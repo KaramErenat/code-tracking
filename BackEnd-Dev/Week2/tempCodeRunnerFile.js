@@ -1,15 +1,11 @@
-function palindrome (userString){
+let x = "Karam"
+// let y = x.split("")
+// console.log(y.length);
 
-//     let splitedString = userString.split("")
-//     let reverseString = [];
-
-//     for(i = splitedString.length; i>=0;i--){
-//         reverseString.push
-//     }
-
-//     let finalString = reverseString.join("")
-//     return finalString;
+// let z =[]
+// for (let i = y.length-1; i >=0; i--) {
+//     console.log(y[i]);
+//     z.push(y[i])
 // }
 
-
-// console.log(palindrome("karam"));
+// console.log(z.join(""));
