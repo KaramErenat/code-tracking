@@ -1,0 +1,12 @@
+{
+  "name": "training",
+  "version": "1.0.0",
+  "description": "training",
+  "main": "./Week2/First-http-server.js",
+  "scripts": {
+    "start": "node ./Week2/First-http-server.js",
+    "start:dev":"nodemon ./Week2/First-http-server.js"
+  },
+  "author": "Karam Erenat",
+  "license": "ISC"
+}

@@ -1,0 +1,16 @@
+{
+  "name": "week2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "First-http-server.js",
+  "scripts": {
+    "start": "node First-http-server.js",
+    "start:dev": "nodemon First-http-server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "nodemon": "^3.1.9"
+  }
+}
