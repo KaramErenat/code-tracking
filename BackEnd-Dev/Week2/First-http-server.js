@@ -64,6 +64,35 @@ http.createServer(
                 }
                 res.end(JSON.stringify(JSON.parse(data)))
             })
+        }else if(req.url == '/addToFile' && req.method == 'POST'){
+
+            let parsedData = ''
+            req.on('data', (chunk)=>{
+                parsedData = JSON.parse(chunk)
+            })
+
+            const isIdExist = users.find(user=> user.id === parsedData.id)
+            if(isIdExist){
+                res.write("This id is already exist")
+                res.end()
+                return
+            }
+
+            req.on('end', ()=>{
+                fs.readFile('./users.json', 'utf8', (err, data)=>{
+                    if(err){
+                        console.log(err);
+                        return
+                    }
+                    const users = JSON.parse(data)
+                    users.push(parsedData)
+                    fs.writeFileSync('./users.json', JSON.stringify(users))
+                    res.end(JSON.stringify(users))
+                })
+            })
+
+
+
         }else{
             console.log("error 404");
             
