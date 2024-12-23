@@ -71,24 +71,24 @@ http.createServer(
                 parsedData = JSON.parse(chunk)
             })
 
-            const isIdExist = users.find(user=> user.id === parsedData.id)
+            
+
+            req.on('end', ()=>{
+                // read the file to check the latest version of the data
+                const users = JSON.parse(fs.readFileSync('./users.json', 'utf8'))
+                // check if the id is already exist or not
+                const isIdExist = users.find(user=> user.id === parsedData.id)
             if(isIdExist){
                 res.write("This id is already exist")
                 res.end()
                 return
             }
-
-            req.on('end', ()=>{
-                fs.readFile('./users.json', 'utf8', (err, data)=>{
-                    if(err){
-                        console.log(err);
-                        return
-                    }
-                    const users = JSON.parse(data)
-                    users.push(parsedData)
-                    fs.writeFileSync('./users.json', JSON.stringify(users))
-                    res.end(JSON.stringify(users))
-                })
+            // push the data to the array
+            users.push(parsedData)
+            // write the data to the file
+            fs.writeFileSync('./users.json', JSON.stringify(users))
+            res.write("Added successfully")
+            res.end()
             })
 
 
