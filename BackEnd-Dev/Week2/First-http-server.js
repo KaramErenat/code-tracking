@@ -1,4 +1,5 @@
-const http = require('http')
+const http = require('http');
+const { parse } = require('path');
 
 
 // Array
@@ -18,6 +19,27 @@ http.createServer(
             res.write(JSON.stringify(users))
             res.end()
             
+        }else if(req.url == '/add' && req.method == 'POST'){
+            // recieve data from the client
+            req.on('data', (chunk)=>{
+               // console.log("data recieved");
+               // console.log(chunk); // binary data that should be parsed
+                const parsedData = JSON.parse(chunk)
+                //console.log(parsedData);
+
+                // in this scope we only parse the data and we get out
+                
+            })
+
+            // push the data to the array
+
+
+            // response to the client
+
+
+            res.write(JSON.stringify(users))
+            res.end()
+
         }else{
             console.log("error 404");
             
