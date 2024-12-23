@@ -13,6 +13,9 @@ const users = [
 ]
 
 
+// ADD to a file
+const fs = require('fs')
+// fs.writeFileSync('./users.json', JSON.stringify(users))
 
 http.createServer(
     (req,res)=>{
@@ -21,6 +24,7 @@ http.createServer(
             res.end()
             
         }else if(req.url == '/add' && req.method == 'POST'){
+
             // recieve data from the client
             let parsedData = ''
             req.on('data', (chunk)=>{
@@ -52,6 +56,14 @@ http.createServer(
 
                 // we use end after the on('data') because we need to wait until the data is received
 
+        }else if(req.url == '/readFromFile' && req.method == 'GET'){
+            fs.readFile('./users.json', 'utf8', (err, data)=>{
+                if(err){
+                    console.log(err);
+                    return
+                }
+                res.end(JSON.stringify(JSON.parse(data)))
+            })
         }else{
             console.log("error 404");
             
